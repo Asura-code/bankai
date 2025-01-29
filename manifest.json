@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Bankai",
+    "version": "1.0",
+    "description": "Приятного просмотра",
+    "action":{
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "https://www.kinopoisk.ru/*" ],
+            "js": [ "app.js" ]
+        }
+    ]
+ }

@@ -1,14 +1,13 @@
-let x = window.location.href;
-console.log(x)
-x = x.replace("https://www.kinopoisk.ru/", "")
+let url = window.location.href;
+url  = url.replace("https://www.kinopoisk.ru/", "")
 
-let q = x.indexOf('/')
-console.log(q)
-let r = ""
+let start = url.indexOf('/')
 
-for (let i=q+1; i < 20; i++) {
-    if (x[i] != "/"){
-        r+=x[i]
+let result = "https://asura-code.github.io/react-resume/#lol"
+
+for (let i=start+1; i < 20; i++) {
+    if (url[i] != "/"){
+        result+=url[i]
     }else{
         break
     }
@@ -16,12 +15,25 @@ for (let i=q+1; i < 20; i++) {
     
 }
 
-// snow.addEventListener("click", function (e) {
-//     console.log(x)
-//   });
 
-let result = "https://asura-code.github.io/react-resume/#lol" + r +"#"
-if (window.confirm('Хотите посмотреть эту киноленту?')) 
-    {
-    window.location.href=result;
-    };
+function insertText() {
+    const newElement = document.createElement('a');
+    newElement.textContent = "смотреть бесплатно";
+    newElement.href = result + "#"
+    newElement.setAttribute('target', '_blank');
+    newElement.style.position = 'fixed';
+    newElement.style.top = '10px';
+    newElement.style.left = '10px';
+    newElement.style.backgroundColor = 'white';
+    newElement.style.padding = '10px';
+    newElement.style.zIndex = '1000';
+    
+    document.body.appendChild(newElement);
+}
+
+insertText()
+
+// if (window.confirm('Хотите посмотреть эту киноленту?')) 
+//     {
+//     window.location.href=result;
+//     };

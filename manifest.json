@@ -6,6 +6,7 @@
     "action":{
         "default_popup": "index.html"
     },
+    "permissions": ["activeTab", "scripting", "tabs"],
     "content_scripts": [
         {
             "matches": [ "https://www.kinopoisk.ru/*" ],

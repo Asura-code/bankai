@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Bankai",
-    "version": "1.0",
-    "description": "Приятного просмотра",
+    "version": "2.0",
+    "description": "Расширение для бесплатного просмора кинолент",
     "action":{
         "default_popup": "index.html"
     },

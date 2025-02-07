@@ -51,25 +51,6 @@ function imdb(){
 
 
 function insertText() {
-    // const newElement = document.createElement('a');
-    // newElement.textContent = "смотреть бесплатно";
-    // newElement.href = result + "#"
-    // newElement.setAttribute('target', '_blank');
-    // newElement.style.position = 'fixed';
-    // newElement.style.top = '10px';
-    // newElement.style.left = '10px';
-    // newElement.style.backgroundColor = 'white';
-    // newElement.style.padding = '10px';
-    // newElement.style.zIndex = '1000';   
-    // newElement.className = "newEl"
-    // document.body.appendChild(newElement);
-
-    // if (flag == "kinopoisk"){
-    //     const divs = document.querySelectorAll('div[class*="sc"]')
-    // }else{
-    //     const divs = document.querySelectorAll('div[class*="styles_button"]');
-    // }
-    console.log(flag)
 
 
 const divs = document.querySelectorAll(flag);
@@ -91,7 +72,7 @@ if (flag == "imdb"){
 
 let counter = 0;
 divs.forEach(div => {
-    
+
     const link = document.createElement('a');
 
     link.setAttribute('target', '_blank');
@@ -119,9 +100,3 @@ divs.forEach(div => {
 }
 
 insertText()
-
-
-// if (window.confirm('Хотите посмотреть эту киноленту?')) 
-//     {
-//     window.location.href=result;
-//     };

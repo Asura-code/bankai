@@ -92,8 +92,8 @@ divs.forEach(div => {
     link.style.maxHeight = '5.2rem'
 
     if (counter == 0 ){
-    div.append(link);
-    counter +=1;
+        div.append(link);
+        counter +=1;
     }
 });
 

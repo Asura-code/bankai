@@ -12,7 +12,7 @@
     "permissions": ["activeTab", "scripting", "tabs"],
     "content_scripts": [
         {
-            "matches": [ "https://www.kinopoisk.ru/*", "https://www.imdb.com/*" ],
+            "matches": [ "https://www.kinopoisk.ru/*", "https://www.imdb.com/*", "https://shikimori.one/*" ],
             "js": [ "app.js" ]
         }
     ]

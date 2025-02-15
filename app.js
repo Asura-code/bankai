@@ -75,10 +75,19 @@ function playShikimori() {
         link.style.minWidth = "3.5rem";
         link.style.maxHeight = "3.5rem";
         link.style.font = `700 12pt sans-serif`;
+        link.className = "bankaiLink";
         subhead.append(link);
       });
     }
   });
+
+  // const bankais = document.querySelectorAll('a[class*="bankaiLink"]');
+  // if (bankais.length != 1) {
+  //   console.log(bankais.length);
+  //   setTimeout(location.reload(), 2000);
+  // } else {
+  //   console.log(bankais.length);
+  // }
 }
 
 function playKinopoisk() {

@@ -10,6 +10,9 @@ if (url.includes("kinopoisk")) {
   flag = `imdb`;
 } else if (url.includes("shikimori")) {
   flag = 'a[class*="b-link"]';
+} else if (url.includes("tmdb-nu")) {
+  result = tmdb(url);
+  flag = 'div[class*="mt-6"]';
 }
 
 function kinopoisk(url) {
@@ -20,6 +23,23 @@ function kinopoisk(url) {
 
   for (let i = start + 1; i < 20; i++) {
     if (url[i] != "/") {
+      result += url[i];
+    } else {
+      break;
+    }
+  }
+
+  return result;
+}
+
+function tmdb(url) {
+  url = url.replace("https://tmdb-nu.vercel.app/", "");
+
+  let start = url.indexOf("/");
+  let result = "https://asura-code.github.io/react-resume/#loltm";
+
+  for (let i = start + 1; i < 20; i++) {
+    if ("0123456789".includes(url[i])) {
       result += url[i];
     } else {
       break;
@@ -80,14 +100,6 @@ function playShikimori() {
       });
     }
   });
-
-  // const bankais = document.querySelectorAll('a[class*="bankaiLink"]');
-  // if (bankais.length != 1) {
-  //   console.log(bankais.length);
-  //   setTimeout(location.reload(), 2000);
-  // } else {
-  //   console.log(bankais.length);
-  // }
 }
 
 function playKinopoisk() {
@@ -137,11 +149,48 @@ function playImdb() {
   document.body.appendChild(newElement);
 }
 
+function playTmdb() {
+  const divs = document.querySelectorAll(flag);
+
+  let counter = 0;
+  divs.forEach((div) => {
+    const link = document.createElement("a");
+    const br = document.createElement("br");
+
+    link.setAttribute("target", "_blank");
+    link.textContent = "Смотреть бесплатно";
+    link.href = result + "#";
+    link.style.position = "relative";
+    link.style.alignItems = "center";
+    link.style.justifyContent = "center";
+    link.style.borderRadius = "5.2rem";
+    link.style.background =
+      "linear-gradient(125deg,rgb(181, 115, 35) 70.93%,rgb(51, 47, 20) 90%)";
+    link.style.display = "flex";
+    link.style.boxSizing = "border-box";
+    link.style.color = "white";
+    link.style.textDecoration = "none";
+    link.style.minHeight = "3.5rem";
+    link.style.minWidth = "3.5rem";
+    link.style.maxHeight = "3.5rem";
+    link.style.font = `700 12pt sans-serif`;
+    link.className = "bankaiLink";
+
+    if (counter == 0) {
+      div.append(br);
+      div.append(link);
+      counter += 1;
+    }
+  });
+}
+
 function insertText() {
   if (flag == "imdb") {
     playImdb();
   } else if (flag == 'div[class*="styles_button"]') {
     playKinopoisk();
+  } else if (flag == 'div[class*="mt-6"]') {
+    playTmdb();
   } else {
     playShikimori();
   }

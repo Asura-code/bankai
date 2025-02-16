@@ -7,7 +7,7 @@ if (url.includes("kinopoisk")) {
   flag = 'div[class*="styles_button"]';
 } else if (url.includes("imdb")) {
   result = imdb();
-  flag = `imdb`;
+  flag = 'div[class*="sc"]';
 } else if (url.includes("shikimori")) {
   flag = 'a[class*="b-link"]';
 } else if (url.includes("tmdb-nu")) {
@@ -135,18 +135,51 @@ function playKinopoisk() {
 }
 
 function playImdb() {
-  const newElement = document.createElement("a");
-  newElement.textContent = "смотреть бесплатно";
-  newElement.href = result + "#";
-  newElement.setAttribute("target", "_blank");
-  newElement.style.position = "fixed";
-  newElement.style.top = "10px";
-  newElement.style.left = "10px";
-  newElement.style.backgroundColor = "white";
-  newElement.style.padding = "10px";
-  newElement.style.zIndex = "1000";
-  newElement.className = "newEl";
-  document.body.appendChild(newElement);
+  // const newElement = document.createElement("a");
+  // newElement.textContent = "смотреть бесплатно";
+  // newElement.href = result + "#";
+  // newElement.setAttribute("target", "_blank");
+  // newElement.style.position = "fixed";
+  // newElement.style.top = "10px";
+  // newElement.style.left = "10px";
+  // newElement.style.backgroundColor = "white";
+  // newElement.style.padding = "10px";
+  // newElement.style.zIndex = "1000";
+  // newElement.className = "newEl";
+  // document.body.appendChild(newElement);
+
+  const divs = document.querySelectorAll(flag);
+
+  let counter = 0;
+  divs.forEach((div) => {
+    const link = document.createElement("a");
+
+    link.setAttribute("target", "_blank");
+    link.textContent = "Смотреть бесплатно";
+    link.href = result + "#";
+    link.style.position = "relative";
+    link.style.alignItems = "center";
+    link.style.justifyContent = "center";
+    link.style.borderRadius = "5.2rem";
+    link.style.background =
+      "linear-gradient(125deg,rgb(195, 169, 40) 70.93%,rgb(51, 47, 20) 90%)";
+    link.style.display = "flex";
+    link.style.boxSizing = "border-box";
+    link.style.color = "white";
+    link.style.textDecoration = "none";
+    link.style.minHeight = "3.5rem";
+    link.style.minWidth = "3.5rem";
+    link.style.maxHeight = "3.5rem";
+    link.style.font = `700 12pt sans-serif`;
+    link.className = "bankaiLink";
+
+    if (counter == 30) {
+      div.append(link);
+      counter += 1;
+    } else {
+      counter += 1;
+    }
+  });
 }
 
 function playTmdb() {
@@ -185,7 +218,7 @@ function playTmdb() {
 }
 
 function insertText() {
-  if (flag == "imdb") {
+  if (flag == 'div[class*="sc"]') {
     playImdb();
   } else if (flag == 'div[class*="styles_button"]') {
     playKinopoisk();

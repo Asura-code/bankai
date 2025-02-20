@@ -1,18 +1,23 @@
 let url = window.location.href;
 
-let flag = ``;
+let element = ``;
+let flag = "";
 
 if (url.includes("kinopoisk")) {
   result = kinopoisk(url);
-  flag = 'div[class*="styles_button"]';
+  element = 'div[class*="styles_button"]';
+  flag = "kinopoisk";
 } else if (url.includes("imdb")) {
   result = imdb();
-  flag = 'span[class*="hero"]';
+  element = '[data-testid*="plot"]';
+  flag = "imdb";
 } else if (url.includes("shikimori")) {
-  flag = 'a[class*="b-link"]';
+  element = 'a[class*="b-link"]';
+  flag = "shikimori";
 } else if (url.includes("tmdb-nu")) {
   result = tmdb(url);
-  flag = 'div[class*="mt-6"]';
+  element = 'div[class*="mt-6"]';
+  flag = "tmdb";
 }
 
 function kinopoisk(url) {
@@ -67,7 +72,7 @@ function imdb() {
 }
 
 function playShikimori() {
-  const divs = document.querySelectorAll(flag);
+  const divs = document.querySelectorAll(element);
   let linkHref = "";
   let counter = 0;
   divs.forEach((div) => {
@@ -103,7 +108,7 @@ function playShikimori() {
 }
 
 function playKinopoisk() {
-  const divs = document.querySelectorAll(flag);
+  const divs = document.querySelectorAll(element);
 
   let counter = 0;
   divs.forEach((div) => {
@@ -135,41 +140,36 @@ function playKinopoisk() {
 }
 
 function playImdb() {
-  const divs = document.querySelectorAll(flag);
+  const divs = document.querySelector(element);
 
   let counter = 0;
-  divs.forEach((div) => {
-    const link = document.createElement("a");
+  const link = document.createElement("a");
 
-    link.setAttribute("target", "_blank");
-    link.textContent = "Смотреть бесплатно";
-    link.href = result + "#";
-    link.style.position = "relative";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-    link.style.borderRadius = "5.2rem";
-    link.style.background =
-      "linear-gradient(125deg,rgb(195, 169, 40) 70.93%,rgb(51, 47, 20) 90%)";
-    link.style.display = "flex";
-    link.style.boxSizing = "border-box";
-    link.style.color = "white";
-    link.style.textDecoration = "none";
-    link.style.minHeight = "3.5rem";
-    link.style.minWidth = "3.5rem";
-    link.style.maxHeight = "3.5rem";
-    link.style.font = `700 12pt sans-serif`;
-    link.className = "bankaiLink";
-    link.style.zIndex = "1000";
-
-    if (counter == 0) {
-      div.append(link);
-      counter += 1;
-    }
-  });
+  link.setAttribute("target", "_blank");
+  link.textContent = "Смотреть бесплатно";
+  link.href = result + "#";
+  link.style.position = "relative";
+  link.style.alignItems = "center";
+  link.style.justifyContent = "center";
+  link.style.borderRadius = "5.2rem";
+  link.style.background =
+    "linear-gradient(125deg,rgb(195, 169, 40) 70.93%,rgb(51, 47, 20) 90%)";
+  link.style.display = "flex";
+  link.style.boxSizing = "border-box";
+  link.style.color = "white";
+  link.style.textDecoration = "none";
+  link.style.minHeight = "3.5rem";
+  link.style.minWidth = "3.5rem";
+  link.style.maxHeight = "3.5rem";
+  link.style.font = `700 12pt sans-serif`;
+  link.className = "bankaiLink";
+  link.style.zIndex = "1000";
+  const br = document.createElement("br");
+  divs.parentNode.insertBefore(link, divs);
 }
 
 function playTmdb() {
-  const divs = document.querySelectorAll(flag);
+  const divs = document.querySelectorAll(element);
 
   let counter = 0;
   divs.forEach((div) => {
@@ -203,16 +203,16 @@ function playTmdb() {
   });
 }
 
-function insertText() {
-  if (flag == 'span[class*="hero"]') {
+function pasteElement() {
+  if (flag == "imdb") {
     playImdb();
-  } else if (flag == 'div[class*="styles_button"]') {
+  } else if (flag == "kinopoisk") {
     playKinopoisk();
-  } else if (flag == 'div[class*="mt-6"]') {
+  } else if (flag == "tmdb") {
     playTmdb();
   } else {
     playShikimori();
   }
 }
 
-insertText();
+pasteElement();

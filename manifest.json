@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Bankai",
-    "description": "Расширение для бесплатного просмора кинолент",
+    "description": "Расширение для бесплатного просмотра кинолент",
     "icons":{
         "96": "1.png"
     },
@@ -9,7 +9,6 @@
     "action":{
         "default_popup": "index.html"
     },
-    "permissions": ["activeTab", "scripting", "tabs"],
     "content_scripts": [
         {
             "matches": [ "https://www.kinopoisk.ru/*", "https://www.imdb.com/*", "https://shikimori.one/*", "https://tmdb-nu.vercel.app/*" ],

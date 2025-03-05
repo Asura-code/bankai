@@ -20,6 +20,61 @@ if (url.includes("kinopoisk")) {
   flag = "tmdb";
 }
 
+let newEl = {
+  kinopoisk: {
+    bg: "linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)",
+    minH: "5.2rem",
+    minW: "25rem",
+    maxH: "5.2rem",
+    font: `650 12pt sans-serif`,
+  },
+
+  shikimori: {
+    bg: "linear-gradient(125deg,rgb(181, 115, 35) 70.93%,rgb(51, 47, 20) 90%)",
+    minH: "3.5rem",
+    minW: "3.5rem",
+    maxH: "3.5rem",
+    font: `700 12pt sans-serif`,
+  },
+  imdb: {
+    bg: "linear-gradient(125deg,rgb(195, 169, 40) 70.93%,rgb(51, 47, 20) 90%)",
+    minH: "3.5rem",
+    minW: "3.5rem",
+    maxH: "3.5rem",
+    font: `700 12pt sans-serif`,
+  },
+  tmdb: {
+    bg: "linear-gradient(125deg,rgb(181, 115, 35) 70.93%,rgb(51, 47, 20) 90%)",
+    minH: "3.5rem",
+    minW: "3.5rem",
+    maxH: "3.5rem",
+    font: `700 12pt sans-serif`,
+  },
+};
+
+function makeElement(prop, href) {
+  const link = document.createElement("a");
+
+  link.setAttribute("target", "_blank");
+  link.textContent = "Смотреть бесплатно";
+  link.href = href + "#";
+  link.style.position = "relative";
+  link.style.alignItems = "center";
+  link.style.justifyContent = "center";
+  link.style.borderRadius = "5.2rem";
+  link.style.background = newEl[prop].bg;
+  link.style.display = "flex";
+  link.style.boxSizing = "border-box";
+  link.style.color = "white";
+  link.style.textDecoration = "none";
+  link.style.minHeight = newEl[prop].minH;
+  link.style.minWidth = newEl[prop].minW;
+  link.style.maxHeight = newEl[prop].maxH;
+  link.style.font = newEl[prop].font;
+
+  return link;
+}
+
 function kinopoisk(url) {
   url = url.replace("https://www.kinopoisk.ru/", "");
 
@@ -81,26 +136,7 @@ function playShikimori() {
       const subheads = document.querySelectorAll('div[class*="c-info-right"]');
 
       subheads.forEach((subhead) => {
-        const link = document.createElement("a");
-
-        link.setAttribute("target", "_blank");
-        link.textContent = "Смотреть бесплатно";
-        link.href = linkHref + "#";
-        link.style.position = "relative";
-        link.style.alignItems = "center";
-        link.style.justifyContent = "center";
-        link.style.borderRadius = "5.2rem";
-        link.style.background =
-          "linear-gradient(125deg,rgb(181, 115, 35) 70.93%,rgb(51, 47, 20) 90%)";
-        link.style.display = "flex";
-        link.style.boxSizing = "border-box";
-        link.style.color = "white";
-        link.style.textDecoration = "none";
-        link.style.minHeight = "3.5rem";
-        link.style.minWidth = "3.5rem";
-        link.style.maxHeight = "3.5rem";
-        link.style.font = `700 12pt sans-serif`;
-        link.className = "bankaiLink";
+        const link = makeElement("shikimori", linkHref);
         subhead.append(link);
       });
     }
@@ -112,25 +148,7 @@ function playKinopoisk() {
 
   let counter = 0;
   divs.forEach((div) => {
-    const link = document.createElement("a");
-
-    link.setAttribute("target", "_blank");
-    link.textContent = "Смотреть бесплатно";
-    link.href = result + "#";
-    link.style.position = "relative";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-    link.style.borderRadius = "5.2rem";
-    link.style.background =
-      "linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)";
-    link.style.display = "flex";
-    link.style.boxSizing = "border-box";
-    link.style.color = "white";
-    link.style.textDecoration = "none";
-    link.style.minHeight = "5.2rem";
-    link.style.minWidth = "25rem";
-    link.style.maxHeight = "5.2rem";
-    link.style.font = `650 12pt sans-serif`;
+    const link = makeElement("kinopoisk", result);
 
     if (counter == 0) {
       div.append(link);
@@ -142,28 +160,8 @@ function playKinopoisk() {
 function playImdb() {
   const divs = document.querySelector(element);
 
-  let counter = 0;
-  const link = document.createElement("a");
+  const link = makeElement("imdb", result);
 
-  link.setAttribute("target", "_blank");
-  link.textContent = "Смотреть бесплатно";
-  link.href = result + "#";
-  link.style.position = "relative";
-  link.style.alignItems = "center";
-  link.style.justifyContent = "center";
-  link.style.borderRadius = "5.2rem";
-  link.style.background =
-    "linear-gradient(125deg,rgb(195, 169, 40) 70.93%,rgb(51, 47, 20) 90%)";
-  link.style.display = "flex";
-  link.style.boxSizing = "border-box";
-  link.style.color = "white";
-  link.style.textDecoration = "none";
-  link.style.minHeight = "3.5rem";
-  link.style.minWidth = "3.5rem";
-  link.style.maxHeight = "3.5rem";
-  link.style.font = `700 12pt sans-serif`;
-  link.className = "bankaiLink";
-  link.style.zIndex = "1000";
   const br = document.createElement("br");
   divs.parentNode.insertBefore(link, divs);
 }
@@ -173,27 +171,8 @@ function playTmdb() {
 
   let counter = 0;
   divs.forEach((div) => {
-    const link = document.createElement("a");
+    const link = makeElement("tmdb", result);
     const br = document.createElement("br");
-
-    link.setAttribute("target", "_blank");
-    link.textContent = "Смотреть бесплатно";
-    link.href = result + "#";
-    link.style.position = "relative";
-    link.style.alignItems = "center";
-    link.style.justifyContent = "center";
-    link.style.borderRadius = "5.2rem";
-    link.style.background =
-      "linear-gradient(125deg,rgb(181, 115, 35) 70.93%,rgb(51, 47, 20) 90%)";
-    link.style.display = "flex";
-    link.style.boxSizing = "border-box";
-    link.style.color = "white";
-    link.style.textDecoration = "none";
-    link.style.minHeight = "3.5rem";
-    link.style.minWidth = "3.5rem";
-    link.style.maxHeight = "3.5rem";
-    link.style.font = `700 12pt sans-serif`;
-    link.className = "bankaiLink";
 
     if (counter == 0) {
       div.append(br);

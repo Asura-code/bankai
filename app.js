@@ -77,9 +77,10 @@ function makeElement(prop, href) {
 
 function kinopoisk(url) {
   url = url.replace("https://www.kinopoisk.ru/", "");
+  url = url.replace("http://www.kinopoisk.ru/series/", "");
 
   let start = url.indexOf("/");
-  let result = "https://asura-code.github.io/react-resume/#lol";
+  let result = "https://bankaigo.ru/#lol";
 
   for (let i = start + 1; i < 20; i++) {
     if (url[i] != "/") {
@@ -96,7 +97,7 @@ function tmdb(url) {
   url = url.replace("https://tmdb-nu.vercel.app/", "");
 
   let start = url.indexOf("/");
-  let result = "https://asura-code.github.io/react-resume/#loltm";
+  let result = "https://bankaigo.ru/#loltm";
 
   for (let i = start + 1; i < 20; i++) {
     if ("0123456789".includes(url[i])) {
@@ -113,7 +114,7 @@ function imdb() {
   url = url.replace("https://www.imdb.com/", "");
 
   let start = url.indexOf("tt");
-  let result = "https://asura-code.github.io/react-resume/#lol";
+  let result = "https://bankaigo.ru/#lol";
 
   for (let i = start; i < 20; i++) {
     if (url[i] != "/") {

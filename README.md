@@ -2,6 +2,8 @@
 
 chrome extension for watching movies
 
+![](https://github.com/Asura-code/bankai/blob/main/bankai.png)
+
 Расширение для кинопоиска которое позволяет смотреть киноленты бесплатно
 ![](https://github.com/Asura-code/react-resume/blob/main/public/tenor3.gif)
 

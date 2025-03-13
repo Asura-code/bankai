@@ -1,4 +1,7 @@
 let url = window.location.href;
+// const css = document.createElement("style");
+// css.textContent = `div[class*="watch-online-button styles_containerRoot__cCC6E"] .link:hover { background-color: yellow; }`;
+// document.head.appendChild(css);
 
 let element = ``;
 let flag = "";
@@ -23,8 +26,8 @@ if (url.includes("kinopoisk")) {
 let newEl = {
   kinopoisk: {
     bg: "linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)",
-    minH: "5.2rem",
-    minW: "25rem",
+    minH: "5.5rem",
+    minW: "27rem",
     maxH: "5.2rem",
     font: `650 12pt sans-serif`,
   },
@@ -54,9 +57,16 @@ let newEl = {
 
 function makeElement(prop, href) {
   const link = document.createElement("a");
+  const image = document.createElement("img");
+  const textNode = document.createTextNode("Смотреть бесплатно");
+
+  image.style.marginRight = "0.5rem";
+
+  image.src =
+    "https://api.iconify.design/material-symbols:play-arrow.svg?color=%23ffffff";
+  image.style.width = "3rem";
 
   link.setAttribute("target", "_blank");
-  link.textContent = "Смотреть бесплатно";
   link.href = href + "#";
   link.style.position = "relative";
   link.style.alignItems = "center";
@@ -71,6 +81,9 @@ function makeElement(prop, href) {
   link.style.minWidth = newEl[prop].minW;
   link.style.maxHeight = newEl[prop].maxH;
   link.style.font = newEl[prop].font;
+  link.appendChild(image);
+  link.appendChild(textNode);
+  link.classList.add("link");
 
   return link;
 }

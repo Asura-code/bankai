@@ -5,13 +5,13 @@
     "icons":{
         "96": "1.png"
     },
-    "version": "2.1",
+    "version": "2.2",
     "action":{
         "default_popup": "index.html"
     },
     "content_scripts": [
         {
-            "matches": [ "https://www.kinopoisk.ru/*", "https://www.imdb.com/*", "https://shikimori.one/*", "https://tmdb-nu.vercel.app/*" ],
+            "matches": [ "https://www.kinopoisk.ru/*", "https://www.imdb.com/*", "https://shikimori.one/*", "https://tmdb-nu.vercel.app/*", "https://www.justwatch.com/*" ],
             "js": [ "app.js" ]
         }
     ]

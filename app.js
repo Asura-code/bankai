@@ -1,13 +1,24 @@
 let url = window.location.href;
-// const css = document.createElement("style");
-// css.textContent = `div[class*="watch-online-button styles_containerRoot__cCC6E"] .link:hover { background-color: yellow; }`;
-// document.head.appendChild(css);
 
 let element = ``;
 let flag = "";
 
+let isAnime = false;
+
+function setIsAnime() {
+  let genres = document.querySelectorAll(`a[data-tid*="603f73a4"]`);
+  let anime = false;
+  genres.forEach((genre) => {
+    if (genre.textContent == "аниме" || genre.textContent == "anime") {
+      anime = true;
+    }
+  });
+  return anime;
+}
+isAnime = setIsAnime();
+
 if (url.includes("kinopoisk")) {
-  result = kinopoisk(url);
+  result = kinopoisk(url, isAnime);
   element = 'div[class*="styles_button"]';
   flag = "kinopoisk";
 } else if (url.includes("imdb")) {
@@ -21,12 +32,15 @@ if (url.includes("kinopoisk")) {
   result = tmdb(url);
   element = 'div[class*="mt-6"]';
   flag = "tmdb";
+}else if (url.includes("justwatch")) {
+  element = 'span[class*="mt-6"]';
+  flag = "justwatch";
 }
 
 let newEl = {
   kinopoisk: {
     bg: "linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)",
-    minH: "5.5rem",
+    minH: "5.2rem",
     minW: "27rem",
     maxH: "5.2rem",
     font: `650 12pt sans-serif`,
@@ -67,7 +81,7 @@ function makeElement(prop, href) {
   image.style.width = "3rem";
 
   link.setAttribute("target", "_blank");
-  link.href = href + "#";
+  link.href = href;
   link.style.position = "relative";
   link.style.alignItems = "center";
   link.style.justifyContent = "center";
@@ -81,18 +95,18 @@ function makeElement(prop, href) {
   link.style.minWidth = newEl[prop].minW;
   link.style.maxHeight = newEl[prop].maxH;
   link.style.font = newEl[prop].font;
+
   link.appendChild(image);
   link.appendChild(textNode);
-  link.classList.add("link");
 
   return link;
 }
 
-function kinopoisk(url) {
+function kinopoisk(url, isAnime) {
   url = url.replace("https://www.kinopoisk.ru/", "");
-  url = url.replace("http://www.kinopoisk.ru/series/", "");
 
   let start = url.indexOf("/");
+
   let result = "https://bankaigo.ru/#lol";
 
   for (let i = start + 1; i < 20; i++) {
@@ -103,7 +117,15 @@ function kinopoisk(url) {
     }
   }
 
-  return result;
+  result = result + "#";
+  if (isAnime == true) {
+    result =
+      result +
+      "anime?" +
+      document.querySelector('span[data-tid*="eb6be8"]').textContent;
+  }
+
+  return result + "?";
 }
 
 function tmdb(url) {
@@ -120,7 +142,7 @@ function tmdb(url) {
     }
   }
 
-  return result;
+  return result + "#";
 }
 
 function imdb() {
@@ -137,7 +159,7 @@ function imdb() {
     }
   }
 
-  return result;
+  return result + "#";
 }
 
 function playShikimori() {
@@ -163,6 +185,7 @@ function playKinopoisk() {
   let counter = 0;
   divs.forEach((div) => {
     const link = makeElement("kinopoisk", result);
+    link.classList.add(`style_button__PNtXT`);
 
     if (counter == 0) {
       div.append(link);
@@ -173,7 +196,6 @@ function playKinopoisk() {
 
 function playImdb() {
   const divs = document.querySelector(element);
-
   const link = makeElement("imdb", result);
 
   const br = document.createElement("br");

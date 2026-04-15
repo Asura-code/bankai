@@ -1,7 +1,5 @@
 # bankai
 
-Статус доступности новейшего пакета в магазине хрома - Ожидает рассмотрения
-
 chrome extension for watching movies
 
 ![](https://github.com/Asura-code/bankai/blob/main/bankai.png)

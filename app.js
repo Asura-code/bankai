@@ -3,22 +3,8 @@ let url = window.location.href;
 let element = ``;
 let flag = "";
 
-let isAnime = false;
-
-function setIsAnime() {
-  let genres = document.querySelectorAll(`a[data-tid*="603f73a4"]`);
-  let anime = false;
-  genres.forEach((genre) => {
-    if (genre.textContent == "аниме" || genre.textContent == "anime") {
-      anime = true;
-    }
-  });
-  return anime;
-}
-isAnime = setIsAnime();
-
 if (url.includes("kinopoisk")) {
-  result = kinopoisk(url, isAnime);
+  result = kinopoisk(url);
   element = 'div[class*="styles_button"]';
   flag = "kinopoisk";
 } else if (url.includes("imdb")) {
@@ -32,9 +18,6 @@ if (url.includes("kinopoisk")) {
   result = tmdb(url);
   element = 'div[class*="mt-6"]';
   flag = "tmdb";
-}else if (url.includes("justwatch")) {
-  element = 'span[class*="mt-6"]';
-  flag = "justwatch";
 }
 
 let newEl = {
@@ -81,7 +64,7 @@ function makeElement(prop, href) {
   image.style.width = "3rem";
 
   link.setAttribute("target", "_blank");
-  link.href = href;
+  link.href = href + "#";
   link.style.position = "relative";
   link.style.alignItems = "center";
   link.style.justifyContent = "center";
@@ -102,12 +85,12 @@ function makeElement(prop, href) {
   return link;
 }
 
-function kinopoisk(url, isAnime) {
+function kinopoisk(url) {
   url = url.replace("https://www.kinopoisk.ru/", "");
+  url = url.replace("http://www.kinopoisk.ru/series/", "");
 
   let start = url.indexOf("/");
-
-  let result = "https://bankaigo.ru/#lol";
+  let result = "https://on.kinohub.vip/movie/";
 
   for (let i = start + 1; i < 20; i++) {
     if (url[i] != "/") {
@@ -117,22 +100,14 @@ function kinopoisk(url, isAnime) {
     }
   }
 
-  result = result + "#";
-  if (isAnime == true) {
-    result =
-      result +
-      "anime?" +
-      document.querySelector('span[data-tid*="eb6be8"]').textContent;
-  }
-
-  return result + "?";
+  return result;
 }
 
 function tmdb(url) {
   url = url.replace("https://tmdb-nu.vercel.app/", "");
 
   let start = url.indexOf("/");
-  let result = "https://bankaigo.ru/#loltm";
+  let result = "https://on.kinohub.vip/movie/tm";
 
   for (let i = start + 1; i < 20; i++) {
     if ("0123456789".includes(url[i])) {
@@ -142,14 +117,14 @@ function tmdb(url) {
     }
   }
 
-  return result + "#";
+  return result;
 }
 
 function imdb() {
   url = url.replace("https://www.imdb.com/", "");
 
   let start = url.indexOf("tt");
-  let result = "https://bankaigo.ru/#lol";
+  let result = "https://on.kinohub.vip/movie/";
 
   for (let i = start; i < 20; i++) {
     if (url[i] != "/") {
@@ -159,7 +134,7 @@ function imdb() {
     }
   }
 
-  return result + "#";
+  return result;
 }
 
 function playShikimori() {
@@ -196,6 +171,7 @@ function playKinopoisk() {
 
 function playImdb() {
   const divs = document.querySelector(element);
+
   const link = makeElement("imdb", result);
 
   const br = document.createElement("br");

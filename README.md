@@ -13,7 +13,7 @@ chrome extension for watching movies
 
 ## Chrome / Яндекс
 
-- Распакуйте [архив расширения](https://github.com/Asura-code/bankai/releases/tag/1.0.3) в любую папку так чтобы внутри папки были файлы `manifest.json`, `app.js`, `1.png`, `index.html`.
+- Распакуйте [архив расширения](https://github.com/Asura-code/bankai/releases/tag/2.34.0) в любую папку так чтобы внутри папки были файлы `manifest.json`, `app.js`, `1.png`, `index.html`.
 - Перейдите по сслыке `chrome://extensions/` и включите `Developer Mode`(`Режим Разработчика`).
 - Нажмите `Load unpacked`(`Загрузить распакованное расширение`) и выберите папку с файлами указанными выше.
 - Теперь вы сможете переходить на бесплатный плеер сразу со странички кинопоиска, шикимори, tmdb и imdb. Если кнопка не появилась - обновите страницу, скорее всего поможет.
